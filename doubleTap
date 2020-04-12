@@ -1,0 +1,28 @@
+void controller_inputs()
+    {
+        bool tapping = false;
+        float firstTap = 0.0f;
+        float lastTap = 0.0f;
+        float tapTime = 0.4f;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            firstTap = Time.time;
+            if (!tapping)
+            {
+                lastTap = Time.time;
+                tapping = true;
+                animator.SetTrigger("Jump");
+                Debug.Log("Singletap");
+            }
+            if ((firstTap - lastTap) < tapTime)
+            {
+                Debug.Log("Doubletap");
+            }
+            else
+            {
+                animator.ResetTrigger("Jump");
+
+            }
+        }
+        
+    }
